@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables (contains API keys)
+.env
+
+# Vector store (auto-generated)
+vector_store/
+
+# Log files (user data, not for GitHub)
+data/logs/*.txt
+data/logs/*.log
+data/logs/*.tgz
+data/logs/*.tar.gz
+data/logs/*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
