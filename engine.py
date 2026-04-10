@@ -34,7 +34,12 @@ INITIAL_CHECK_PATTERNS = ["egate_console.log", "e2e_console_output.log", "log.ht
 ARCHIVE_IMPORTANT_PATTERNS = [
     "syslog", "messages", "dmesg", "journalctl", "kern.log",
     "daemon.log", "boot.log", "auth.log", "cron.log",
-    "worker", "egate", "alarm", "error"
+    "worker", "egate", "alarm", "error",
+    # Telecom-specific files inside sosreport/archives
+    "uec_1", "uec_2", "uec_", "btslog", "syslog_files",
+    "rain", "runtime", "l3_log", "airphone", "wts",
+    "gnb", "enb", "cu_cp", "cu_up", "du_", "l2nrt",
+    "ctrl_conn", "firewall", "config"
 ]
 
 IMPORTANT_KEYWORDS = [
@@ -44,7 +49,19 @@ IMPORTANT_KEYWORDS = [
     "exception", "unreachable", "invalid", "mismatch",
     "obsolete", "drop", "retry", "disconnect",
     "panic", "oom", "killed", "segfault", "oops",
-    "not found", "degraded", "down", "offline"
+    "not found", "degraded", "down", "offline",
+    # Telecom-specific error keywords
+    "rrc release", "ue context release", "rrc_release",
+    "crc nok", "crc:nok", "cell setup", "not received",
+    "ctrl_del_ue", "cancel all active fsm", "is idle",
+    "sib", "systeminformationblock", "pbchdecoder",
+    "firewall", "gtp traffic", "trs firewall",
+    "cell sync", "nok", "ue release", "trigger ue release",
+    "ngap", "rach", "handover", "ho failure",
+    "rlf", "radio link failure", "beam failure",
+    "sctp", "x2", "xn", "f1", "e1", "n2", "n3",
+    "drb", "srb", "bearer", "pdu session",
+    "registration reject", "service reject", "attach reject"
 ]
 
 # -----------------------------
@@ -53,7 +70,7 @@ IMPORTANT_KEYWORDS = [
 LOG_TYPE_PATTERNS = {
     "egate_console": {
         "file_patterns": ["egate_console", "egate"],
-        "keywords": ["egate", "simulator", "bts", "enb", "gnb", "ue", "cell", "carrier"],
+        "keywords": ["egate", "simulator", "bts", "enb", "gnb", "ue", "cell", "carrier", "uec-", "amf-"],
         "description": "eGate Simulator Console Log"
     },
     "e2e_test": {
@@ -67,14 +84,34 @@ LOG_TYPE_PATTERNS = {
         "description": "Robot Framework Log"
     },
     "syslog": {
-        "file_patterns": ["syslog", "messages", "kern.log", "daemon.log"],
+        "file_patterns": ["syslog", "messages", "kern.log", "daemon.log", "syslog_files"],
         "keywords": ["systemd", "kernel", "sshd", "cron", "rsyslog"],
         "description": "Linux System Log"
+    },
+    "uec_log": {
+        "file_patterns": ["uec_1", "uec_2", "uec_"],
+        "keywords": ["nrrrcmsghandler", "rrcrelease", "rfma_impl", "rrcfsm", "dl-dcch-nr"],
+        "description": "UE Controller Log (from sosreport/wts)"
+    },
+    "rain_runtime": {
+        "file_patterns": ["rain", "runtime", "cp_ue", "cu_cp", "cu_up"],
+        "keywords": ["cp_ue", "cuurelease", "concreteuesa", "ue release", "trigger ue release"],
+        "description": "RAIN / gNB Runtime Log"
+    },
+    "btslog": {
+        "file_patterns": ["btslog", "l3_log", "airphone", "l2nrt"],
+        "keywords": ["cell setup", "cellid", "rfm_event", "inputmessagehandler", "pbchdecoder", "crc nok", "ssburst"],
+        "description": "BTS / Airphone Runtime Log"
     },
     "worker_log": {
         "file_patterns": ["worker", "executor", "runner"],
         "keywords": ["worker", "executor", "job", "task", "queue", "pid"],
         "description": "Worker/Executor Log"
+    },
+    "sosreport": {
+        "file_patterns": ["sosreport", "sos_", "wts"],
+        "keywords": [],
+        "description": "SOSReport Archive"
     },
     "json_log": {
         "file_patterns": [],
@@ -408,69 +445,143 @@ def get_groq_client():
 # TELECOM-SPECIFIC PROMPT ENGINEERING
 # =============================================================
 
-SYSTEM_PROMPT_ANALYZE = """You are an expert telecom automated testing log analyst.
-You specialize in analyzing logs from:
-- eGate simulator console (BTS/eNB/gNB/UE simulation)
-- End-to-end (e2e) test execution output
-- Robot Framework test reports
-- Linux syslog / sosreport from test servers
-- Worker/executor logs from test automation frameworks
+SYSTEM_PROMPT_ANALYZE = """You are an expert telecom automated testing log analyst for 5G gNB (and 4G eNB) testlines.
 
-When analyzing logs:
-1. Identify the EXACT error type (connection, timeout, resource, configuration, protocol, etc.)
-2. Determine if the error is a test infrastructure issue or a real product issue
-3. Look for error cascades — one root failure causing multiple downstream errors
-4. Check for timing-related issues (race conditions, timeouts, slow responses)
-5. Identify the component that failed first (BTS, UE, core network, test framework)
-6. Provide actionable next steps for the engineer
+You understand the full telecom test environment:
+- AP (Airphone) and gNB software builds are installed on testline hardware
+- After installation, Robot Framework test cases are executed
+- Results are in log.html, and detailed traces are in egate_console, syslogs, sosreport
+
+Two categories of failures:
+1. INSTALLATION FAILURES: No log.html / egate / syslogs available. Only e2e_console or worker logs exist.
+   → Focus on build installation errors, dependency issues, connectivity problems.
+2. TEST CASE FAILURES: log.html, egate, syslogs, sosreport are all available.
+   → Follow the standard debug flow below.
+
+Standard telecom debug flow for test case failures:
+1. Check log.html → identify WHICH test case failed and the failure message
+2. Check egate_console → find what happened to that test case, note the EXACT TIMING of failure
+3. Using the timing from egate, check syslogs/sosreport → what happened at that time on the system
+4. Drill into specific files:
+   - UE release issues → check uec_1.log (from sosreport → wts → log → uec_1.log)
+   - Cell setup issues → check btslog → syslog_files, L3 runtime logs, airphone logs
+   - gNB-side events → check rain runtime logs (cp_ue, cu_cp, cu_up)
+   - Network/firewall issues → check TRS Firewall logs, GTP traffic logs
+
+Key telecom error patterns you MUST recognize:
+- UE RRC Release from gNB: "Starting RRC Release on Receiving RRC Release Message from GNB" → check uec_1.log to confirm, then rain runtime for gNB-side trigger
+- UE Context Release: "UE CONTEXT RELEASE COMPLETE" with AMF_UE_NGAP_ID / RAN_UE_NGAP_ID
+- CRC NOK: "CRC:NOK" or "Received CRC NOK for ssBlockId" → cell sync / cell setup issue
+- Cell Setup Failure: "Cell Setup completed" for some cells but not others → check which cell IDs are missing
+- SIB not received: "SystemInformationBlockType1 not received" → cell not broadcasting SIB
+- Firewall issues: excessive "TRS Firewall for GTP traffic" prints (compare count with PASS logs)
+- Radio Link Failure (RLF): beam failure, RACH failure, handover failure
+
+ALWAYS:
+- Note EXACT timestamps from error logs
+- Correlate timestamps across different log files
+- Identify if error is on UE side (egate/uec) vs gNB side (rain/btslog) vs infra (syslog)
+- Compare error counts between PASS and FAIL if both are available
 
 Format your response as:
 **Root Cause:** [one-line summary]
 **Severity:** [CRITICAL / HIGH / MEDIUM / LOW]
-**Category:** [Infrastructure / Product / Configuration / Environment / Timing]
-**Details:** [detailed explanation]
-**Recommendation:** [what to do next]"""
+**Category:** [Infrastructure / Product / Configuration / Environment / Timing / Radio / Protocol]
+**Affected Component:** [UE / gNB / Cell / AMF / Testline / Build]
+**Timestamps:** [key timestamps from the logs]
+**Details:** [detailed explanation with specific log evidence]
+**Recommendation:** [actionable fix — what to check, what to change]"""
 
-SYSTEM_PROMPT_COMPARE = """You are an expert telecom automated testing log analyst specializing in PASS vs FAIL log comparison.
+SYSTEM_PROMPT_COMPARE = """You are an expert telecom 5G/4G testline log analyst specializing in PASS vs FAIL log comparison.
 
-The user will provide two sets of logs:
-1. PASS logs — from a test run that PASSED
-2. FAIL logs — from a test run that FAILED
+Context: AP and gNB builds are installed on testline hardware, then Robot Framework test cases run.
+The user will provide PASS and FAIL logs from different test runs.
 
 Your job is to:
-1. Find errors that appear ONLY in the FAIL log (not in the PASS log)
-2. Identify errors that are common in both logs — these are IGNORABLE (likely infrastructure noise)
-3. Determine the TRUE root cause by focusing only on errors unique to the FAIL log
-4. Explain why the test passed despite having some errors (the common ones are harmless)
+1. Find errors ONLY in the FAIL log → these are the real cause
+2. Identify errors common in both → IGNORABLE (normal infra noise)
+3. Count recurring patterns: e.g., "TRS Firewall for GTP traffic" may appear 10x in PASS but 512x in FAIL
+4. Compare timing: errors happening at different times may indicate a different root cause
+5. Check for missing events: something that EXISTS in PASS but is ABSENT in FAIL (e.g., cell setup for a cell ID)
+
+Key comparison patterns:
+- CRC NOK count difference between PASS and FAIL
+- TRS Firewall print count (high count = possible firewall issue on testline)
+- Cell setup completion: all cells in PASS vs missing cells in FAIL
+- UE release patterns: normal in PASS vs unexpected in FAIL
+- SIB reception: successful in PASS vs "not received" in FAIL
 
 Format your response as:
 **Ignorable Errors (present in both PASS and FAIL):**
-- [list these — they are normal and can be ignored]
+- [list with counts if relevant]
 
 **Critical Errors (ONLY in FAIL log):**
-- [list these — these caused the failure]
+- [list with timestamps]
+
+**Suspicious Count Differences:**
+- [patterns that appear much more in FAIL than PASS]
+
+**Missing Events (present in PASS, absent in FAIL):**
+- [events that should have happened but didn't]
 
 **Root Cause:** [one-line summary]
 **Severity:** [CRITICAL / HIGH / MEDIUM / LOW]
-**Details:** [detailed explanation of why the test failed]
+**Affected Component:** [UE / gNB / Cell / AMF / Testline / Build]
+**Details:** [detailed explanation referencing specific log evidence]
 **Recommendation:** [actionable fix]"""
 
-SYSTEM_PROMPT_INVESTIGATE = """You are a telecom log debugging agent. You work in an iterative investigation loop.
+SYSTEM_PROMPT_INVESTIGATE = """You are a telecom 5G/4G testline log debugging agent. You follow a structured investigation flow.
 
-The user will give you initial error logs and a list of available files.
-First give a brief initial diagnosis based on your telecom expertise.
-Then tell which file(s) to check next for deeper debugging.
+You understand the telecom testline environment:
+- AP (Airphone) and gNB builds are installed on testline hardware by developers
+- After installation, Robot Framework test cases are run
+- If INSTALLATION fails: only e2e_console or worker logs are available (no log.html, no egate)
+- If TEST CASE fails: log.html, egate_console, syslogs, sosreport etc. are available
 
-Key telecom debugging patterns:
-- If you see UE/cell/carrier errors → check egate_console logs
-- If you see test verdict FAIL → check e2e_console_output or log.html
-- If you see system errors (OOM, segfault) → check syslog or sosreport
-- If you see worker/executor errors → check worker logs
-- If you see connection refused/timeout → check network config files
+=== YOUR INVESTIGATION FLOW ===
 
-Reply with EXACTLY this format at the end:
+Phase 1: Determine failure type
+- If log.html / egate_console are available → TEST CASE failure → go to Phase 2
+- If only e2e_console / worker logs → INSTALLATION failure → analyze those directly
+
+Phase 2: Check log.html / e2e_console
+- Find WHICH test case failed and the failure message
+- Note the test case name, error description
+- REQUEST: egate_console.log (to see what happened during that test case)
+
+Phase 3: Check egate_console
+- Find what happened during the failed test case
+- Note EXACT TIMESTAMPS of errors (e.g., "13:54:15.592")
+- Look for: RRC Release, UE Context Release, registration failures, bearer setup failures
+- Based on what you find, request the right deep-dive file:
+  * UE release / RRC issues → REQUEST: uec_1.log (from sosreport → wts → log → uec_1.log)
+  * Cell setup / CRC issues → REQUEST: btslog syslog_files, L3 runtime logs
+  * gNB-side events → REQUEST: rain runtime log (cp_ue logs)
+  * System crashes → REQUEST: syslog, dmesg
+
+Phase 4: Deep-dive into specific logs
+- Correlate TIMESTAMPS from egate with timestamps in the new file
+- Confirm the root cause with evidence from multiple files
+- If UE release: confirm in uec_1.log (look for "rrcRelease", "rfma_impl", "RrcFsm")
+- Then check gNB side: rain runtime (look for "trigger ue release", "CuUeReleaseSaEventHandler")
+- If cell setup issue: check airphone logs for CRC NOK, SsBurstHandler errors
+- If firewall issue: count "TRS Firewall for GTP traffic" prints (normal is few, problematic is 500+)
+
+Phase 5: Final diagnosis
+- Provide root cause with evidence from ALL files checked
+- Include specific timestamps and log lines as proof
+- Identify affected component (UE, gNB, cell, AMF, testline infra)
+
+=== IMPORTANT RULES ===
+- Always note TIMESTAMPS from error messages
+- Always tell the user WHY you need a specific file
+- Suggest the exact file path when possible (e.g., "sosreport → wts → log → uec_1.log")
+- If a requested file is not available, explain what you can still conclude and what remains uncertain
+- When you have enough evidence, provide final analysis — don't keep requesting files unnecessarily
+
+Reply with this exact format at the end:
 CHECK_NEXT: filename1, filename2
-Or if no more files needed:
+Or if investigation is complete:
 CHECK_NEXT: DONE"""
 
 
