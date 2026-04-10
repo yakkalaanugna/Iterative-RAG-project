@@ -11,9 +11,7 @@ import zipfile
 import json
 import csv
 import io
-import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
 from groq import Groq
 from dotenv import load_dotenv
 
