@@ -1,6 +1,6 @@
-# Iterative RAG Log Analyzer
+# Automated Root Cause Analysis using RAG + Agent
 
-An automated telecom log analyzer using Retrieval-Augmented Generation (RAG) and LLMs (Groq API). Drop your log files in, press Enter, and get AI-driven root cause analysis.
+An AI-powered telecom log analyzer that combines Retrieval-Augmented Generation (RAG) with an LLM Agent (Groq API) to automatically investigate logs, trace errors, and identify root causes. Drop your log files in, press Enter, and let the agent do the rest.
 
 ## Features
 
