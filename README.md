@@ -1,15 +1,25 @@
 # Automated Root Cause Analysis using RAG + Agent
 
-An AI-powered telecom log analyzer that combines Retrieval-Augmented Generation (RAG) with an LLM Agent (Groq API) to automatically investigate logs, trace errors, and identify root causes. Drop your log files in, press Enter, and let the agent do the rest.
+An AI-powered **telecom automated testing log analyzer** that combines Retrieval-Augmented Generation (RAG) with an LLM Agent (Groq API) to automatically investigate logs, trace errors, and identify root causes.
+
+Designed specifically for **telecom test execution environments** — supports eGate console logs, e2e test output, worker logs, syslog, and sosreport archives. Drop your test logs in, press Enter, and let the agent diagnose failures automatically.
+
+## Who Is This For?
+
+- Telecom engineers debugging **automated test failures**
+- Teams working with **eGate simulator**, **e2e test frameworks**, or **Nokia RAN test environments**
+- Anyone dealing with large, noisy test execution logs who wants AI-driven root cause analysis
 
 ## Features
 
-- Fast vector search with FAISS and sentence-transformers
-- Groq LLM integration (Llama-3.3-70b-versatile) — free tier, no credit card needed
-- Auto-detects new logs and archives (.tgz, .zip) without manual rebuild
+- Fast semantic search with FAISS and sentence-transformers
+- Groq LLM Agent (Llama-3.3-70b-versatile) — free tier, no credit card needed
+- **LLM-driven investigation** — agent decides which log files to check next
+- Supports telecom log formats: eGate console, e2e output, worker logs, syslog, sosreport
+- Auto-extracts archives (.tgz, .tar.gz, .zip) — no manual extraction needed
 - Smart filtering — strips ANSI codes, deduplicates, keeps only important lines
-- LLM-driven investigation — AI decides which files to check next
 - Auto-analyze mode — just press Enter, no need to type a question
+- Auto-detects new logs without manual vector store rebuild
 - Secure API key management with `.env`
 
 ## Project Structure
