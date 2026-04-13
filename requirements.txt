@@ -1,6 +1,7 @@
-faiss-cpu
+langchain
+langchain-community
+langchain-groq
+chromadb
 sentence-transformers
-numpy
 groq
-python-dotenv
 streamlit

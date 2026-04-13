@@ -1,0 +1,3 @@
+Registration failure observed.
+AMF connection timeout.
+UE attach procedure failed.

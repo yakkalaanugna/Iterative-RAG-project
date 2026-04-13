@@ -1,3 +1,62 @@
+# Iterative RAG Agent — Telecom Log Analyzer
+
+AI-powered telecom log analyzer using **RAG (Retrieval-Augmented Generation)** with an LLM agent to automatically investigate logs, trace errors, and identify root causes.
+
+## Tech Stack
+
+| Component | Library |
+|-----------|---------|
+| Embeddings | HuggingFace (`all-MiniLM-L6-v2`) |
+| Vector Store | ChromaDB |
+| LLM | Groq (`llama-3.3-70b-versatile`) |
+| Framework | LangChain |
+| Web UI | Streamlit |
+
+## Features
+
+- **Vector retrieval** — ChromaDB stores log embeddings, retriever finds semantically relevant entries
+- **RAG chain** — Retriever → Prompt → Groq LLM → structured root cause analysis
+- **All log formats** — `.txt` `.log` `.json` `.csv` `.xml` `.html` `.cfg` `.tgz` `.zip`
+- **Pass vs Fail comparison** — upload both logs, AI finds errors unique to the failure
+- **Batch analysis** — upload multiple files at once
+- **Cached embeddings** — HuggingFace model loaded once, fast reloads
+- **Telecom-specific** — keywords for eGate, RRC, NGAP, RACH, handover, beam failure, PDU session, etc.
+
+## Project Structure
+
+```
+├── rag_notebook.ipynb    # Full pipeline (step-by-step notebook)
+├── streamlit_app.py      # Web UI (generated from notebook)
+├── requirements.txt      # Python dependencies
+├── data/logs/            # Sample log files
+└── .gitignore
+```
+
+## Getting Started
+
+**1. Clone:**
+```bash
+git clone https://github.com/yakkalaanugna/Automated-RAG-Agent.git
+cd Automated-RAG-Agent
+```
+
+**2. Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the notebook:**
+Open `rag_notebook.ipynb` in VS Code or Jupyter and run all cells.
+
+**4. Or run Streamlit directly:**
+```bash
+streamlit run streamlit_app.py
+```
+Then enter your Groq API key in the sidebar and upload log files.
+
+## Get a Groq API Key
+
+Free at https://console.groq.com/keys — no credit card needed.
 # Automated Root Cause Analysis using RAG + Agent
 
 An AI-powered **telecom automated testing log analyzer** that combines Retrieval-Augmented Generation (RAG) with an LLM Agent (Groq API) to automatically investigate logs, trace errors, and identify root causes.

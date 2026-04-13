@@ -1,0 +1,3 @@
+High latency detected in network.
+Packet delay exceeded limit.
+Traffic congestion observed.

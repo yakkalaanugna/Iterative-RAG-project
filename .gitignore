@@ -5,16 +5,6 @@ venv/
 # Environment variables (contains API keys)
 .env
 
-# Vector store (auto-generated)
-vector_store/
-
-# Log files (user data, not for GitHub)
-data/logs/*.txt
-data/logs/*.log
-data/logs/*.tgz
-data/logs/*.tar.gz
-data/logs/*.zip
-
 # Python
 __pycache__/
 *.pyc
@@ -23,8 +13,14 @@ __pycache__/
 dist/
 build/
 
+# ChromaDB local storage
+chroma_db/
+
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+
+# Notebook checkpoints
+.ipynb_checkpoints/
