@@ -122,13 +122,14 @@ FILE_TYPES = ["txt","log","json","csv","xml","html","htm","cfg","tgz","gz","zip"
 
 with st.sidebar:
     st.header("Settings")
-    api_key = st.text_input("Groq API Key", type="password", help="https://console.groq.com/keys")
+    api_key = st.text_input("Groq API Key", type="password")
+    st.markdown("[Get a free Groq API key here](https://console.groq.com/keys)")
     st.divider()
     st.markdown("**Supported formats:**")
     st.markdown("`.txt` `.log` `.json` `.csv` `.xml` `.html` `.cfg` `.tgz` `.zip`")
 
 if not api_key:
-    st.info("Enter your Groq API key in the sidebar to start.")
+    st.info("Enter your Groq API key in the sidebar to start. [Get one free here](https://console.groq.com/keys)")
     st.stop()
 
 # Pre-warm embedding model on first load

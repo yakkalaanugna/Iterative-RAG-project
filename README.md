@@ -4,17 +4,6 @@ AI-powered telecom log analyzer using **RAG (Retrieval-Augmented Generation)** t
 
 Upload your telecom test logs → AI retrieves relevant entries via vector search → LLM analyzes and gives structured root cause diagnosis.
 
-## Screenshots
-
-### Single Log Analysis
-![Single Analysis](screenshots/single_analysis.png)
-
-### Pass vs Fail Comparison
-![Pass vs Fail](screenshots/pass_vs_fail.png)
-
-### Batch Analysis
-![Batch Analysis](screenshots/batch_analysis.png)
-
 ## Tech Stack
 
 | Component | Library |
@@ -26,6 +15,16 @@ Upload your telecom test logs → AI retrieves relevant entries via vector searc
 | Web UI | Streamlit |
 
 ## How It Works
+
+```mermaid
+flowchart LR
+    A["Upload Logs"] --> B["Parse & Filter"]
+    B --> C["HuggingFace Embed"]
+    C --> D["ChromaDB Store"]
+    D --> E["Retriever top-k"]
+    E --> F["Groq LLM"]
+    F --> G["Root Cause Report"]
+```
 
 1. **Upload log files** — supports `.txt` `.log` `.json` `.csv` `.xml` `.html` `.cfg` `.tgz` `.zip`
 2. **Log parsing** — cleans ANSI codes, deduplicates, filters important lines using telecom-specific keywords
@@ -52,7 +51,6 @@ Upload your telecom test logs → AI retrieves relevant entries via vector searc
 ├── streamlit_app.py      # Web UI (Streamlit dashboard)
 ├── requirements.txt      # Python dependencies
 ├── data/logs/            # Sample log files
-├── screenshots/          # App screenshots for README
 └── .gitignore
 ```
 
@@ -83,3 +81,183 @@ Enter your **Groq API key** in the sidebar and upload log files.
 Get a free key at https://console.groq.com/keys — no credit card needed.
 
 Uses **Llama 3.3 70B** model via Groq's fast inference API.
+
+---
+
+## App Interface
+
+### Sidebar — API Key & Settings
+```
+┌─────────────────────────┐
+│  ⚙️ Settings             │
+│                         │
+│  Groq API Key: [••••••] │
+│  🔗 Get a free key here  │
+│                         │
+│  Supported formats:     │
+│  .txt .log .json .csv   │
+│  .xml .html .cfg        │
+│  .tgz .zip              │
+└─────────────────────────┘
+```
+
+### Tab 1 — Single Log Analysis
+```
+┌──────────────────────────────────────────────────────┐
+│  📡 Iterative RAG Agent — Telecom Log Analyzer        │
+│  Upload logs → Vector retrieval → AI root cause       │
+│                                                      │
+│  [ Single Analysis ] [ Pass vs Fail ] [ Batch ]      │
+│                                                      │
+│  Upload a log file for AI analysis                   │
+│  ┌──────────────────────┐                            │
+│  │  📁 Drag and drop    │                            │
+│  │     log file here    │                            │
+│  └──────────────────────┘                            │
+│  Question: [                              ]          │
+│                                                      │
+│  [ 🔍 Analyze ]                                      │
+│                                                      │
+│  🔴 ERROR: 2  🔴 FAIL: 2  🟡 WARNING: 3  🔵 INFO: 2 │
+│                                                      │
+│  📋 AI Analysis:                                     │
+│  - Root Cause: AMF connection timeout causing...     │
+│  - Severity: CRITICAL                                │
+│  - Details: Multiple errors detected including...    │
+│  - Recommendation: Check AMF connectivity and...     │
+└──────────────────────────────────────────────────────┘
+```
+
+### Tab 2 — Pass vs Fail Comparison
+```
+┌──────────────────────────────────────────────────────┐
+│  Compare PASS and FAIL logs                          │
+│                                                      │
+│  ┌─────────────┐    ┌─────────────┐                  │
+│  │ 📁 PASS log │    │ 📁 FAIL log │                  │
+│  └─────────────┘    └─────────────┘                  │
+│                                                      │
+│  [ 🔄 Compare ]                                      │
+│                                                      │
+│  PASS entries: 5  │  Common: 2  │  FAIL-only: 3     │
+│                                                      │
+│  ▼ Critical Errors (FAIL only)                       │
+│  🔴 AMF connection timeout.                          │
+│  🔴 UE attach procedure failed.                      │
+│                                                      │
+│  📋 AI Comparison Analysis:                          │
+│  - Root Cause: FAIL log shows unique AMF timeout...  │
+│  - Severity: HIGH                                    │
+│  - Recommendation: Investigate AMF node health...    │
+└──────────────────────────────────────────────────────┘
+```
+
+### Tab 3 — Batch Analysis
+```
+┌──────────────────────────────────────────────────────┐
+│  Upload multiple log files                           │
+│  ┌──────────────────────┐                            │
+│  │  📁 Drag and drop    │                            │
+│  │   multiple files     │                            │
+│  └──────────────────────┘                            │
+│  Question: [                              ]          │
+│                                                      │
+│  [ 📊 Analyze All ]                                  │
+│                                                      │
+│    log1.txt: 3 entries                               │
+│    log2.txt: 3 entries                               │
+│    log3.txt: 3 entries                               │
+│  Total Entries: 9                                    │
+│                                                      │
+│  📋 AI Analysis: ...                                 │
+└──────────────────────────────────────────────────────┘
+```
+
+## App Interface
+
+### Sidebar — API Key & Settings
+```
+┌─────────────────────────┐
+│  ⚙️ Settings             │
+│                         │
+│  Groq API Key: [••••••] │
+│  🔗 Get a free key here  │
+│                         │
+│  Supported formats:     │
+│  .txt .log .json .csv   │
+│  .xml .html .cfg        │
+│  .tgz .zip              │
+└─────────────────────────┘
+```
+
+### Tab 1 — Single Log Analysis
+```
+┌──────────────────────────────────────────────────────┐
+│  📡 Iterative RAG Agent — Telecom Log Analyzer        │
+│  Upload logs → Vector retrieval → AI root cause       │
+│                                                      │
+│  [ Single Analysis ] [ Pass vs Fail ] [ Batch ]      │
+│                                                      │
+│  Upload a log file for AI analysis                   │
+│  ┌──────────────────────┐                            │
+│  │  📁 Drag and drop    │                            │
+│  │     log file here    │                            │
+│  └──────────────────────┘                            │
+│  Question: [                              ]          │
+│                                                      │
+│  [ 🔍 Analyze ]                                      │
+│                                                      │
+│  🔴 ERROR: 2  🔴 FAIL: 2  🟡 WARNING: 3  🔵 INFO: 2 │
+│                                                      │
+│  📋 AI Analysis:                                     │
+│  - Root Cause: AMF connection timeout causing...     │
+│  - Severity: CRITICAL                                │
+│  - Details: Multiple errors detected including...    │
+│  - Recommendation: Check AMF connectivity and...     │
+└──────────────────────────────────────────────────────┘
+```
+
+### Tab 2 — Pass vs Fail Comparison
+```
+┌──────────────────────────────────────────────────────┐
+│  Compare PASS and FAIL logs                          │
+│                                                      │
+│  ┌─────────────┐    ┌─────────────┐                  │
+│  │ 📁 PASS log │    │ 📁 FAIL log │                  │
+│  └─────────────┘    └─────────────┘                  │
+│                                                      │
+│  [ 🔄 Compare ]                                      │
+│                                                      │
+│  PASS entries: 5  │  Common: 2  │  FAIL-only: 3     │
+│                                                      │
+│  ▼ Critical Errors (FAIL only)                       │
+│  🔴 AMF connection timeout.                          │
+│  🔴 UE attach procedure failed.                      │
+│                                                      │
+│  📋 AI Comparison Analysis:                          │
+│  - Root Cause: FAIL log shows unique AMF timeout...  │
+│  - Severity: HIGH                                    │
+│  - Recommendation: Investigate AMF node health...    │
+└──────────────────────────────────────────────────────┘
+```
+
+### Tab 3 — Batch Analysis
+```
+┌──────────────────────────────────────────────────────┐
+│  Upload multiple log files                           │
+│  ┌──────────────────────┐                            │
+│  │  📁 Drag and drop    │                            │
+│  │   multiple files     │                            │
+│  └──────────────────────┘                            │
+│  Question: [                              ]          │
+│                                                      │
+│  [ 📊 Analyze All ]                                  │
+│                                                      │
+│    log1.txt: 3 entries                               │
+│    log2.txt: 3 entries                               │
+│    log3.txt: 3 entries                               │
+│  Total Entries: 9                                    │
+│                                                      │
+│  📋 AI Analysis: ...                                 │
+└──────────────────────────────────────────────────────┘
+```
