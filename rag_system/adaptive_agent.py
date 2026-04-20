@@ -77,9 +77,10 @@ class AdaptiveIterativeRAGAgent:
         │  │  ┌──────────────────────────────────────┐  │   │
         │  │  │ 1. Query Refinement (LLM)            │  │   │
         │  │  │ 2. Hybrid Retrieval (Vector + BM25)  │  │   │
-        │  │  │ 3. LLM Analysis                      │  │   │
-        │  │  │ 4. Confidence Scoring                │  │   │
-        │  │  │ 5. Convergence Check                 │  │   │
+        │  │  │ 3. Cross-Encoder Reranking            │  │   │
+        │  │  │ 4. LLM Analysis                      │  │   │
+        │  │  │ 5. Confidence Scoring                │  │   │
+        │  │  │ 6. Convergence Check                 │  │   │
         │  │  └──────────────────────────────────────┘  │   │
         │  └─────────────────┬─────────────────────────┘   │
         │                    │                              │
@@ -142,10 +143,10 @@ Question: {question}"""
         self,
         groq_api_key: str,
         model_name: str = "llama-3.3-70b-versatile",
-        max_iterations: int = 5,
+        max_iterations: int = 3,
         convergence_threshold: float = 0.01,
         alpha: float = 0.7,
-        top_k: int = 12,
+        top_k: int = 6,
         use_memory: bool = True,
         memory_path: str = "data/memory_store.json",
     ):
@@ -198,10 +199,25 @@ Question: {question}"""
         return self.records
 
     def _build_documents(self) -> None:
-        """Convert LogRecords to LangChain Documents."""
+        """Convert LogRecords to LangChain Documents with enriched content.
+        
+        Uses natural-language style enrichment rather than bracket-formatted
+        metadata, because:
+          - all-MiniLM-L6-v2 was trained on natural text; structured prefixes
+            like [ERROR] [file:L4] degrade embedding quality
+          - BM25 tokenizes on whitespace, so natural words like "error" and
+            "log1.txt" match queries better than "[error]" or "[log1.txt:l4]"
+          - The source/line/timestamp remain in metadata for format_retrieved()
+        """
         self.documents = [
             Document(
-                page_content=r.message,
+                page_content=(
+                    f"{r.log_level} {r.source} line {r.line_number} "
+                    f"{'at ' + r.timestamp + ' ' if r.timestamp else ''}"
+                    f"{r.module + ' ' if r.module else ''}"
+                    f"{r.error_code + ' ' if r.error_code else ''}"
+                    f"{r.message}"
+                ),
                 metadata={
                     "source": r.source,
                     "line": r.line_number,
@@ -258,12 +274,33 @@ Question: {question}"""
         previous_confidence = 0.0
         best_iteration_idx = 0
         best_confidence = 0.0
+        best_scored_docs: List[ScoredDocument] = []
+        consecutive_drops = 0
+        seen_doc_contents: set = set()  # Track docs across iterations to avoid redundancy
 
         for i in range(1, self.max_iterations + 1):
             iter_start = time.time()
 
-            # 1. Retrieve documents
-            scored_docs = self.retriever.retrieve(current_query, self.top_k)
+            # 1. Retrieve documents with cross-encoder reranking
+            #    On iteration 2+, over-fetch to compensate for dedup filtering
+            n_cand = 20 if i == 1 else 30
+            raw_scored_docs = self.retriever.retrieve_and_rerank(
+                current_query, top_k=self.top_k, n_candidates=n_cand
+            )
+
+            # Deduplicate: on iteration 2+, prefer NEW documents not seen before
+            if i > 1 and seen_doc_contents:
+                new_docs = [sd for sd in raw_scored_docs if sd.content not in seen_doc_contents]
+                old_docs = [sd for sd in raw_scored_docs if sd.content in seen_doc_contents]
+                # Keep some old high-scoring docs for context continuity, but prioritize new
+                scored_docs = (new_docs + old_docs)[:self.top_k]
+            else:
+                scored_docs = raw_scored_docs[:self.top_k]
+
+            # Track seen documents
+            for sd in scored_docs:
+                seen_doc_contents.add(sd.content)
+
             context_text = self.retriever.format_retrieved(scored_docs)
             retrieval_scores = [sd.final_score for sd in scored_docs]
 
@@ -302,13 +339,27 @@ Question: {question}"""
             )
             iterations.append(iteration_result)
 
-            # Track best
+            # Track best iteration AND its scored_docs
             if confidence > best_confidence:
                 best_confidence = confidence
                 best_iteration_idx = i - 1  # 0-indexed
+                best_scored_docs = scored_docs
+                consecutive_drops = 0
+            else:
+                consecutive_drops += 1
 
-            # 5. Convergence check
-            if i > 1 and improvement < self.convergence_threshold:
+            # 5. Stopping criteria (refined after expert review):
+            #    - Allow ONE confidence dip (natural variance from query narrowing)
+            #    - Stop on 2 consecutive non-improvements (true plateau/degradation)
+            #    - High-confidence early exit at 0.85
+            if consecutive_drops >= 2:
+                break
+
+            if i > 1 and improvement < self.convergence_threshold and consecutive_drops >= 1:
+                break
+
+            # High-confidence early exit: no need to iterate further
+            if confidence >= 0.85:
                 break
 
             # 6. Refine query for next iteration (if not last)
@@ -332,11 +383,14 @@ Question: {question}"""
         # Parse structured fields from best analysis
         parsed = self._parse_analysis(best.analysis)
 
+        # Use best iteration's scored_docs (not last iteration's)
+        final_docs = best_scored_docs if best_scored_docs else scored_docs
+
         result = {
             "root_cause": parsed.get("root_cause", ""),
             "severity": parsed.get("severity", ""),
             "confidence": best.confidence,
-            "supporting_logs": [f"[{sd.metadata.get('source', '')}] {sd.content}" for sd in scored_docs],
+            "supporting_logs": [f"[{sd.metadata.get('source', '')}] {sd.content}" for sd in final_docs],
             "reasoning_steps": parsed.get("reasoning_steps", []),
             "retrieval_scores": best.retrieval_scores,
             "iterations": [it.to_dict() for it in iterations],

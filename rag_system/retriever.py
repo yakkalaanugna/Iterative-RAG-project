@@ -1,12 +1,20 @@
 """
-retriever.py — Hybrid Retriever (Dense Vector + Sparse BM25)
+retriever.py — Hybrid Retriever (Dense Vector + Sparse BM25 + Cross-Encoder Reranker)
 
-Combines semantic similarity search (FAISS / ChromaDB) with lexical
-BM25 retrieval.  Final scores are fused:
+Three-stage retrieval pipeline:
 
-    final_score = alpha * vector_score + (1 - alpha) * bm25_score
+    Stage 1 — Candidate generation (cheap, high recall):
+        Hybrid fusion of dense vector search + BM25 sparse retrieval.
+        Over-fetches N candidates (e.g. 20).
 
-Returns deduplicated, top-k ranked document chunks.
+    Stage 2 — Cross-encoder reranking (accurate, moderate cost):
+        A cross-encoder model scores each (query, document) pair for
+        fine-grained relevance. This is the key component for precision.
+
+    Stage 3 — Top-k selection:
+        Return the top-k reranked results to the LLM.
+
+Returns deduplicated, reranked, top-k document chunks.
 """
 
 import math
@@ -15,6 +23,8 @@ from collections import defaultdict
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
+import numpy as np
+from sentence_transformers import CrossEncoder
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
@@ -102,6 +112,7 @@ class ScoredDocument:
     document: Document
     vector_score: float = 0.0
     bm25_score: float = 0.0
+    reranker_score: float = 0.0
     final_score: float = 0.0
 
     @property
@@ -117,17 +128,24 @@ class ScoredDocument:
 
 class HybridRetriever:
     """
-    Hybrid retriever combining dense vector search with BM25 sparse retrieval.
+    Three-stage retriever: hybrid candidate generation + cross-encoder reranking.
 
     Architecture:
         1. Dense path  — HuggingFace embeddings + ChromaDB similarity search
         2. Sparse path — BM25 over the same document corpus
         3. Score fusion — weighted combination with deduplication
+        4. Cross-encoder reranking — fine-grained (query, doc) relevance scoring
+
+    The cross-encoder (ms-marco-MiniLM-L-6-v2) is a 22M-parameter model trained
+    on MS MARCO passage ranking. It scores each (query, document) pair jointly,
+    providing much more accurate relevance estimates than bi-encoder similarity
+    alone. Cost: ~2-5ms per document on CPU for short texts.
 
     Parameters:
-        alpha:      weight for vector scores (1-alpha for BM25)
-        top_k:      number of documents to return after fusion
-        model_name: HuggingFace embedding model
+        alpha:          weight for vector scores (1-alpha for BM25)
+        top_k:          number of documents to return after reranking
+        model_name:     HuggingFace bi-encoder embedding model
+        reranker_model: HuggingFace cross-encoder model for reranking
     """
 
     def __init__(
@@ -135,6 +153,7 @@ class HybridRetriever:
         alpha: float = 0.7,
         top_k: int = 12,
         model_name: str = "all-MiniLM-L6-v2",
+        reranker_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
     ):
         self.alpha = alpha
         self.top_k = top_k
@@ -144,6 +163,7 @@ class HybridRetriever:
             model_name=model_name,
             encode_kwargs={"normalize_embeddings": True},
         )
+        self.reranker = CrossEncoder(reranker_model, max_length=256)
         self.vectorstore: Optional[Chroma] = None
         self.bm25: Optional[BM25] = None
         self.documents: List[Document] = []
@@ -236,6 +256,72 @@ class HybridRetriever:
         # 5. Sort and return top-k
         ranked = sorted(score_map.values(), key=lambda x: x.final_score, reverse=True)
         return ranked[:k]
+
+    def retrieve_and_rerank(
+        self,
+        query: str,
+        top_k: Optional[int] = None,
+        n_candidates: int = 20,
+    ) -> List[ScoredDocument]:
+        """
+        Two-stage retrieve-then-rerank pipeline.
+
+        Stage 1 — Candidate generation (hybrid retrieval):
+            Fuse BM25 + dense bi-encoder to produce a high-recall candidate
+            set (default 20).  Hybrid fusion scores are used ONLY to rank
+            candidates for the reranker input; they do NOT influence the
+            final ranking.  This decouples recall (hybrid's job) from
+            precision (cross-encoder's job).
+
+        Stage 2 — Cross-encoder reranking:
+            Score each (query, candidate) pair with a cross-encoder that
+            performs full cross-attention over the concatenated input.
+            The sigmoid-normalized cross-encoder score becomes the SOLE
+            final_score used for ranking and downstream confidence.
+
+            Rationale for not mixing hybrid scores into final ranking:
+            The cross-encoder already captures both lexical and semantic
+            signals through its joint encoding.  Adding the hybrid score
+            reintroduces the noise that reranking is meant to eliminate
+            (e.g., high BM25 scores for term-overlap-heavy but irrelevant
+            log lines).
+
+        Latency:
+            Stage 1: ~50 ms (index lookups)
+            Stage 2: ~40–100 ms (20 forward passes, MiniLM-L6, CPU)
+            Total:   ~100–150 ms — negligible vs. a single LLM call (~10 s)
+
+        Args:
+            query:        search query string
+            top_k:        number of documents to return after reranking
+            n_candidates: size of the candidate pool from Stage 1
+
+        Returns:
+            List[ScoredDocument] sorted by cross-encoder relevance score.
+        """
+        k = top_k or self.top_k
+        n_candidates = max(n_candidates, k * 3)
+
+        # ── Stage 1: Hybrid candidate generation (recall-oriented) ─────────
+        candidates = self.retrieve(query, top_k=n_candidates)
+        if not candidates:
+            return []
+
+        # ── Stage 2: Cross-encoder reranking (precision-oriented) ──────────
+        pairs = [(query, sd.content) for sd in candidates]
+        ce_raw = self.reranker.predict(pairs)
+
+        # Sigmoid normalization to [0, 1]
+        ce_scores = 1.0 / (1.0 + np.exp(-np.array(ce_raw)))
+
+        for sd, ce_score in zip(candidates, ce_scores):
+            sd.reranker_score = float(ce_score)
+            # Cross-encoder is the SOLE ranking signal after Stage 1
+            sd.final_score = float(ce_score)
+
+        # ── Stage 3: Top-k selection ───────────────────────────────────────
+        candidates.sort(key=lambda x: x.final_score, reverse=True)
+        return candidates[:k]
 
     def retrieve_vector_only(self, query: str, top_k: Optional[int] = None) -> List[ScoredDocument]:
         """Dense-only retrieval (for baseline comparison)."""

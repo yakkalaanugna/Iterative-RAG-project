@@ -118,9 +118,12 @@ class RAGEvaluator:
     @staticmethod
     def root_cause_match(predicted: str, ground_truth_keywords: List[str]) -> float:
         """
-        Root cause accuracy: 1.0 if all keywords present in prediction, else partial.
+        Root cause accuracy: fractional keyword overlap score.
 
-        Uses keyword overlap to allow flexible matching of root cause descriptions.
+        Returns the fraction of ground truth keywords found in the prediction.
+        This is kept as strict fractional matching (not thresholded) to ensure
+        fair comparison across methods — both baseline and adaptive are evaluated
+        under the same metric.
         """
         if not ground_truth_keywords:
             return 0.0
