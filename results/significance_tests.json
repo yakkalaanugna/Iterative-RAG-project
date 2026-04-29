@@ -1,0 +1,98 @@
+{
+  "Hybrid_vs_Hybrid+Rerank": {
+    "precision_at_k": {
+      "mean_a": 0.6985,
+      "mean_b": 0.7944,
+      "mean_diff": 0.0959,
+      "t_statistic": -5.054,
+      "p_value": 4e-06,
+      "significant_005": true,
+      "ci_95_lower": 0.0606,
+      "ci_95_upper": 0.1329,
+      "n": 65
+    },
+    "root_cause_accuracy": {
+      "mean_a": 0.312,
+      "mean_b": 0.3442,
+      "mean_diff": 0.0322,
+      "t_statistic": -1.2009,
+      "p_value": 0.234224,
+      "significant_005": false,
+      "ci_95_lower": -0.0165,
+      "ci_95_upper": 0.0831,
+      "n": 65
+    }
+  },
+  "Hybrid+Rerank_vs_Full-System": {
+    "precision_at_k": {
+      "mean_a": 0.7944,
+      "mean_b": 0.7515,
+      "mean_diff": -0.043,
+      "t_statistic": 2.2552,
+      "p_value": 0.027551,
+      "significant_005": true,
+      "ci_95_lower": -0.0794,
+      "ci_95_upper": -0.0083,
+      "n": 65
+    },
+    "root_cause_accuracy": {
+      "mean_a": 0.3442,
+      "mean_b": 0.3587,
+      "mean_diff": 0.0145,
+      "t_statistic": -0.5556,
+      "p_value": 0.580451,
+      "significant_005": false,
+      "ci_95_lower": -0.0361,
+      "ci_95_upper": 0.0635,
+      "n": 65
+    }
+  },
+  "Dense-Only_vs_Full-System": {
+    "precision_at_k": {
+      "mean_a": 0.5535,
+      "mean_b": 0.7515,
+      "mean_diff": 0.1979,
+      "t_statistic": -8.3025,
+      "p_value": 0.0,
+      "significant_005": true,
+      "ci_95_lower": 0.1507,
+      "ci_95_upper": 0.2438,
+      "n": 65
+    },
+    "root_cause_accuracy": {
+      "mean_a": 0.3106,
+      "mean_b": 0.3587,
+      "mean_diff": 0.0481,
+      "t_statistic": -1.7608,
+      "p_value": 0.083058,
+      "significant_005": false,
+      "ci_95_lower": -0.0038,
+      "ci_95_upper": 0.0977,
+      "n": 65
+    }
+  },
+  "Hybrid_vs_Full-System": {
+    "precision_at_k": {
+      "mean_a": 0.6985,
+      "mean_b": 0.7515,
+      "mean_diff": 0.0529,
+      "t_statistic": -2.6944,
+      "p_value": 0.008996,
+      "significant_005": true,
+      "ci_95_lower": 0.0167,
+      "ci_95_upper": 0.0911,
+      "n": 65
+    },
+    "root_cause_accuracy": {
+      "mean_a": 0.312,
+      "mean_b": 0.3587,
+      "mean_diff": 0.0467,
+      "t_statistic": -1.5264,
+      "p_value": 0.131829,
+      "significant_005": false,
+      "ci_95_lower": -0.0118,
+      "ci_95_upper": 0.1024,
+      "n": 65
+    }
+  }
+}

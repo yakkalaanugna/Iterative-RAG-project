@@ -1,0 +1,23 @@
+{
+  "precision_at_k": {
+    "pearson_r": 0.2438,
+    "pearson_p": 1e-06,
+    "spearman_rho": 0.2217,
+    "spearman_p": 1e-05,
+    "n": 390
+  },
+  "recall_at_k": {
+    "pearson_r": 0.2078,
+    "pearson_p": 3.5e-05,
+    "spearman_rho": 0.178,
+    "spearman_p": 0.000411,
+    "n": 390
+  },
+  "mrr": {
+    "pearson_r": 0.169,
+    "pearson_p": 0.000806,
+    "spearman_rho": 0.1434,
+    "spearman_p": 0.004533,
+    "n": 390
+  }
+}

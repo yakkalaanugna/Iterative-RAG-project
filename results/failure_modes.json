@@ -1,0 +1,25 @@
+{
+  "thresholds": {
+    "retrieval": 0.676,
+    "reasoning": 0.33
+  },
+  "distribution": {
+    "High-Ret, High-Reas": {
+      "count": 111,
+      "percentage": 28.5
+    },
+    "High-Ret, Low-Reas": {
+      "count": 84,
+      "percentage": 21.5
+    },
+    "Low-Ret, High-Reas": {
+      "count": 84,
+      "percentage": 21.5
+    },
+    "Low-Ret, Low-Reas": {
+      "count": 111,
+      "percentage": 28.5
+    }
+  },
+  "total": 390
+}

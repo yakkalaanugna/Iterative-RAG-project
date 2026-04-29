@@ -1,0 +1,26 @@
+{
+  "keyword_accuracy_vs_semantic_similarity": {
+    "pearson_r": 0.6733,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.6608,
+    "spearman_p": 0.0
+  },
+  "keyword_accuracy_vs_composite_score": {
+    "pearson_r": 0.7733,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.7617,
+    "spearman_p": 0.0
+  },
+  "semantic_similarity_vs_rouge_l": {
+    "pearson_r": 0.6283,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.624,
+    "spearman_p": 0.0
+  },
+  "semantic_similarity_vs_composite_score": {
+    "pearson_r": 0.8485,
+    "pearson_p": 0.0,
+    "spearman_rho": 0.842,
+    "spearman_p": 0.0
+  }
+}

@@ -1,0 +1,391 @@
+config,query_id,query,query_type,difficulty,scenario_id,precision_at_k,recall_at_k,mrr,root_cause_accuracy,confidence,iterations,latency_s
+Dense-Only,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.6664,0.4721,0.7246,0.5532,0.5334,1,2.57
+Dense-Only,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,0.5637,0.5572,0.7967,0.221,0.5116,1,2.84
+Dense-Only,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.457,0.0282,0.1858,0.1529,0.3648,1,3.06
+Dense-Only,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.6058,0.3554,0.2577,0.2169,0.5958,1,3.53
+Dense-Only,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.5015,0.522,0.4438,0.3633,0.506,1,3.89
+Dense-Only,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,0.7014,0.4277,0.7443,0.2861,0.6332,1,4.36
+Dense-Only,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,0.7212,0.2772,0.6544,0.0213,0.4514,1,4.49
+Dense-Only,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.6361,0.5464,0.7761,0.1608,0.4323,1,3.02
+Dense-Only,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.339,0.5629,0.5168,0.0,0.4651,1,2.61
+Dense-Only,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.4883,0.5868,0.742,0.4422,0.6076,1,2.61
+Dense-Only,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.452,0.4463,0.681,0.4518,0.5151,1,3.1
+Dense-Only,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,0.7193,0.8239,0.6264,0.4983,0.6559,1,3.44
+Dense-Only,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.6438,0.3809,0.6788,0.5537,0.5483,1,3.55
+Dense-Only,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.8659,0.4352,0.6253,0.1161,0.6292,1,3.52
+Dense-Only,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.3795,0.4369,0.6983,0.1535,0.3802,1,4.4
+Dense-Only,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.4687,0.5723,0.7853,0.3425,0.5746,1,2.84
+Dense-Only,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.6093,0.6764,0.5157,0.2636,0.5216,1,4.17
+Dense-Only,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,0.5046,0.1336,0.8254,0.2916,0.612,1,3.16
+Dense-Only,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,0.5559,0.5697,0.9228,0.3367,0.5703,1,4.47
+Dense-Only,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.5905,0.5037,0.3672,0.1474,0.4766,1,2.53
+Dense-Only,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.4265,0.816,0.431,0.2835,0.4382,1,4.52
+Dense-Only,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.3567,0.6201,0.416,0.1745,0.609,1,3.98
+Dense-Only,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.8287,0.2497,0.7219,0.669,0.4767,1,2.54
+Dense-Only,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,0.6553,0.9187,0.9099,0.366,0.6062,1,2.93
+Dense-Only,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.4045,0.5822,0.4739,0.5364,0.4923,1,4.39
+Dense-Only,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,0.5489,0.4428,0.724,0.47,0.5905,1,3.62
+Dense-Only,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.1463,0.4058,0.5034,0.3351,0.348,1,3.97
+Dense-Only,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.3312,0.5932,0.7947,0.3267,0.6146,1,2.47
+Dense-Only,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.6422,0.3734,0.9265,0.3897,0.4617,1,3.95
+Dense-Only,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,0.8608,0.4763,0.5893,0.4996,0.7288,1,4.23
+Dense-Only,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.7211,0.8384,0.5817,0.207,0.4843,1,4.49
+Dense-Only,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.4659,0.6652,0.5967,0.4889,0.5913,1,3.51
+Dense-Only,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.3719,0.8622,0.5619,0.1007,0.3605,1,4.42
+Dense-Only,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.6341,0.4597,0.7185,0.2464,0.6093,1,3.26
+Dense-Only,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.518,0.6562,0.6623,0.115,0.564,1,3.65
+Dense-Only,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,0.8152,0.6531,0.6407,0.5402,0.6375,1,4.01
+Dense-Only,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.765,0.6867,0.4006,0.1821,0.5896,1,4.27
+Dense-Only,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.6893,0.5113,0.7745,0.5419,0.5515,1,3.81
+Dense-Only,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.5767,0.4899,0.4114,0.366,0.3828,1,3.66
+Dense-Only,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.5132,0.4749,0.5145,0.031,0.5778,1,3.69
+Dense-Only,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.5137,0.698,0.6383,0.1405,0.4974,1,3.76
+Dense-Only,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,0.8646,1.0,1.0,0.5913,0.6958,1,4.5
+Dense-Only,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.2428,0.5306,0.5151,0.4161,0.4916,1,2.5
+Dense-Only,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,0.5837,0.3681,0.9008,0.2606,0.5272,1,2.98
+Dense-Only,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.713,0.4455,0.2601,0.4014,0.6,1,3.33
+Dense-Only,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,0.7265,0.3505,0.3952,0.2869,0.6914,1,2.66
+Dense-Only,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,0.0485,0.3176,0.5876,0.0771,0.6734,1,3.78
+Dense-Only,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.5102,0.5884,0.6956,0.362,0.8097,1,4.25
+Dense-Only,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.4181,0.5802,0.6528,0.2064,0.5562,1,4.42
+Dense-Only,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,0.5383,0.1655,0.8399,0.2137,0.7093,1,3.6
+Dense-Only,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.3909,0.4785,0.5068,0.1383,0.4252,1,4.22
+Dense-Only,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.4702,0.37,0.5431,0.4496,0.6599,1,4.29
+Dense-Only,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.7296,0.6153,0.4954,0.2375,0.607,1,4.53
+Dense-Only,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.853,0.2898,0.5749,0.2773,0.7208,1,4.4
+Dense-Only,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.5464,0.6948,0.7531,0.4344,0.6489,1,3.12
+Dense-Only,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.6065,0.4639,0.7716,0.2721,0.505,1,4.45
+Dense-Only,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.4327,0.4797,0.3309,0.5598,0.3653,1,3.86
+Dense-Only,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.349,0.6207,0.7067,0.1856,0.5503,1,3.6
+Dense-Only,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.7568,0.4755,0.4959,0.2764,0.582,1,3.75
+Dense-Only,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,0.6557,0.5336,0.8028,0.4507,0.6991,1,2.62
+Dense-Only,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.1431,0.1043,0.3258,0.1815,0.4641,1,3.34
+Dense-Only,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.6343,0.3032,0.4401,0.1486,0.4372,1,2.7
+Dense-Only,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.4406,0.2087,0.5239,0.4743,0.4326,1,3.05
+Dense-Only,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.5705,0.3952,0.6382,0.3217,0.6248,1,4.54
+Dense-Only,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.4994,0.3079,0.5549,0.382,0.6598,1,3.4
+BM25-Only,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.7764,0.7219,0.9304,0.3231,0.6353,1,3.75
+BM25-Only,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,0.505,0.4187,0.3534,0.2404,0.5139,1,4.5
+BM25-Only,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.4712,0.0526,0.5458,0.3336,0.5215,1,2.79
+BM25-Only,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.3771,0.8167,0.8139,0.2385,0.4471,1,4.49
+BM25-Only,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.8503,0.566,0.7068,0.0,0.5039,1,3.02
+BM25-Only,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,0.795,0.6381,0.7452,0.4815,0.5773,1,4.45
+BM25-Only,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,0.5979,0.2749,0.7383,0.481,0.6749,1,3.2
+BM25-Only,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.6948,0.3928,0.9047,0.3499,0.6496,1,3.61
+BM25-Only,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.4577,0.564,0.5163,0.0985,0.4348,1,2.51
+BM25-Only,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.6956,0.7361,0.4923,0.4338,0.6411,1,3.27
+BM25-Only,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.3461,0.6722,0.6444,0.3344,0.415,1,4.1
+BM25-Only,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,1.0,0.3898,0.5572,0.3982,0.6789,1,3.48
+BM25-Only,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.6157,0.7083,0.4418,0.3085,0.5617,1,2.72
+BM25-Only,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.7004,0.3595,0.5949,0.1776,0.5626,1,3.85
+BM25-Only,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.6015,0.3077,0.42,0.1402,0.4145,1,2.64
+BM25-Only,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.5737,0.3179,0.554,0.1471,0.7045,1,2.53
+BM25-Only,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.6367,0.6075,0.8457,0.4534,0.5236,1,4.02
+BM25-Only,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,0.7082,0.5298,0.7714,0.0446,0.546,1,3.42
+BM25-Only,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,0.8424,0.6611,0.5098,0.3489,0.6348,1,3.57
+BM25-Only,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.6203,0.3567,0.431,0.3569,0.5141,1,2.49
+BM25-Only,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.2164,0.2007,0.3932,0.1156,0.429,1,4.32
+BM25-Only,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.8643,0.6514,0.6358,0.564,0.5724,1,3.68
+BM25-Only,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.4915,0.4414,0.9023,0.2596,0.5202,1,3.21
+BM25-Only,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,0.9442,0.9622,0.6029,0.4847,0.6065,1,2.84
+BM25-Only,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.5421,0.3688,0.5762,0.0,0.6149,1,4.51
+BM25-Only,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,0.6023,0.3651,0.5855,0.4365,0.6021,1,4.4
+BM25-Only,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.2884,0.7409,0.7343,0.3721,0.4003,1,2.84
+BM25-Only,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.4674,0.184,0.3929,0.3218,0.5852,1,3.06
+BM25-Only,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.4845,0.3198,0.7052,0.7253,0.4542,1,2.56
+BM25-Only,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,0.6548,0.563,0.9636,0.2939,0.7105,1,4.05
+BM25-Only,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.438,0.3871,1.0,0.0521,0.4947,1,4.4
+BM25-Only,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.7011,0.4179,0.685,0.3105,0.6487,1,2.74
+BM25-Only,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.488,0.282,0.5796,0.2041,0.4313,1,4.16
+BM25-Only,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.6379,0.8591,0.7677,0.2804,0.6511,1,3.37
+BM25-Only,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.5649,0.4003,0.3305,0.4771,0.508,1,3.51
+BM25-Only,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,0.8471,0.5918,0.9371,0.0691,0.6685,1,2.7
+BM25-Only,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.7459,0.5417,0.7433,0.2084,0.539,1,4.12
+BM25-Only,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.7435,0.9181,0.6993,0.3733,0.5348,1,2.97
+BM25-Only,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.3091,0.6481,0.5517,0.1856,0.5116,1,4.17
+BM25-Only,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.5473,0.3277,0.5704,0.3766,0.62,1,3.96
+BM25-Only,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.4816,0.7591,0.8163,0.0759,0.5867,1,3.18
+BM25-Only,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,0.506,0.8903,0.9109,0.3587,0.6716,1,3.51
+BM25-Only,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.4387,0.4777,0.665,0.5744,0.6083,1,4.39
+BM25-Only,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,0.5129,0.605,0.9543,0.5161,0.6785,1,4.41
+BM25-Only,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.364,0.3697,0.6086,0.6142,0.4903,1,3.29
+BM25-Only,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,0.5654,0.4237,0.4852,0.0793,0.6246,1,3.18
+BM25-Only,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,0.6429,0.739,0.5422,0.1078,0.5487,1,3.4
+BM25-Only,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.7543,0.5825,0.4082,0.3787,0.6359,1,3.67
+BM25-Only,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.7338,0.336,0.7355,0.2186,0.5555,1,4.54
+BM25-Only,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,1.0,0.5333,0.6741,0.3538,0.5809,1,2.88
+BM25-Only,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.4234,0.8326,0.3253,0.4499,0.2674,1,3.38
+BM25-Only,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.7929,0.1372,0.5856,0.2861,0.4685,1,3.8
+BM25-Only,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.505,0.455,0.6546,0.3891,0.5129,1,3.83
+BM25-Only,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.9111,0.4335,0.734,0.4712,0.5665,1,2.66
+BM25-Only,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.7365,0.6546,0.5169,0.3707,0.5847,1,3.28
+BM25-Only,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.4659,0.6302,0.761,0.2691,0.5898,1,3.33
+BM25-Only,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.2441,0.1694,0.369,0.4249,0.3309,1,3.01
+BM25-Only,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.3836,0.8033,0.3247,0.5574,0.5818,1,4.05
+BM25-Only,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.6153,0.6871,0.6604,0.2772,0.6612,1,2.5
+BM25-Only,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,0.844,0.3324,0.6105,0.5032,0.664,1,4.52
+BM25-Only,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.387,0.1462,0.4855,0.0033,0.4922,1,3.61
+BM25-Only,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.5835,0.4526,0.5088,0.4031,0.5702,1,2.82
+BM25-Only,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.5811,0.3429,0.5914,0.3148,0.2877,1,2.55
+BM25-Only,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.6249,0.3467,0.63,0.2163,0.5242,1,3.06
+BM25-Only,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.2931,0.6964,0.4554,0.3851,0.4442,1,3.45
+Hybrid,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.765,0.6498,0.6191,0.4496,0.5656,1,3.49
+Hybrid,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,0.7316,0.3674,0.8823,0.2922,0.6188,1,2.61
+Hybrid,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.5002,0.748,0.4684,0.5237,0.5284,1,4.13
+Hybrid,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.583,0.4363,0.8395,0.073,0.6774,1,2.64
+Hybrid,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.6933,0.7228,0.766,0.1446,0.6277,1,4.14
+Hybrid,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,0.966,0.9548,1.0,0.3472,0.7346,1,3.48
+Hybrid,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,0.7559,0.6534,0.7717,0.1583,0.5327,1,4.39
+Hybrid,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.8657,0.8071,0.7381,0.2863,0.6606,1,4.19
+Hybrid,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.519,0.3997,0.4943,0.2134,0.4968,1,3.16
+Hybrid,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.5951,0.5653,0.7322,0.3937,0.4776,1,4.11
+Hybrid,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.8526,0.3943,0.7781,0.4845,0.6083,1,4.42
+Hybrid,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,1.0,0.945,0.809,0.3417,0.532,1,3.77
+Hybrid,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.6298,0.8477,0.9482,0.259,0.5757,1,3.19
+Hybrid,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.6734,0.474,0.6071,0.0551,0.5245,1,3.88
+Hybrid,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.6469,0.4384,0.5463,0.3682,0.4094,1,4.53
+Hybrid,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.7191,0.7881,0.9328,0.1122,0.6078,1,2.82
+Hybrid,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.6143,0.5393,0.656,0.5094,0.6953,1,3.91
+Hybrid,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,0.7959,0.8078,0.8504,0.2966,0.6477,1,3.58
+Hybrid,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,0.9168,0.9012,0.6523,0.3018,0.6216,1,3.83
+Hybrid,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.7622,0.4983,0.7631,0.0894,0.5213,1,3.0
+Hybrid,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.5004,0.7518,0.4831,0.2902,0.4813,1,3.46
+Hybrid,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.8351,0.7941,0.7603,0.5469,0.5294,1,3.64
+Hybrid,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.7881,0.57,0.8217,0.5115,0.6563,1,3.91
+Hybrid,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,0.9511,0.9115,1.0,0.3173,0.7247,1,4.3
+Hybrid,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.6699,0.6439,0.8979,0.219,0.627,1,4.2
+Hybrid,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,0.6574,0.5958,0.7495,0.4583,0.5062,1,4.51
+Hybrid,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.3094,0.5882,0.6401,0.56,0.4624,1,4.05
+Hybrid,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.6956,0.6899,0.7205,0.5188,0.5093,1,4.41
+Hybrid,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.6397,0.6563,0.8869,0.1858,0.6116,1,3.18
+Hybrid,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,0.7773,0.6792,0.9185,0.4528,0.6593,1,2.5
+Hybrid,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.9194,0.6107,0.66,0.6356,0.5089,1,2.79
+Hybrid,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.3974,0.7322,0.8823,0.4822,0.6882,1,3.02
+Hybrid,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.5988,0.4563,0.8023,0.1079,0.3832,1,4.52
+Hybrid,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.5644,0.7461,0.6861,0.2261,0.5595,1,2.52
+Hybrid,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.5238,0.8512,0.7309,0.4916,0.6253,1,4.07
+Hybrid,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,0.9439,0.8259,0.9833,0.2733,0.7145,1,2.52
+Hybrid,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.7223,0.7316,0.7229,0.555,0.559,1,2.87
+Hybrid,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.9733,0.5154,0.7471,0.1294,0.6397,1,4.12
+Hybrid,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.4409,0.177,0.4919,0.0,0.3794,1,3.91
+Hybrid,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.7735,0.6641,0.7786,0.3438,0.5659,1,2.67
+Hybrid,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.7035,0.4453,0.945,0.4707,0.5886,1,3.14
+Hybrid,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,0.882,0.6174,0.9063,0.3676,0.6879,1,2.62
+Hybrid,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.5498,0.5771,0.9777,0.4237,0.5659,1,2.8
+Hybrid,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,0.7965,0.674,0.6412,0.6156,0.6263,1,4.28
+Hybrid,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.6341,0.5709,0.6947,0.1893,0.568,1,3.4
+Hybrid,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,0.6925,0.6686,1.0,0.2866,0.6163,1,2.58
+Hybrid,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,0.6102,0.5505,0.6988,0.3966,0.637,1,3.83
+Hybrid,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.7955,1.0,0.8882,0.2631,0.7424,1,4.54
+Hybrid,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.6995,0.6397,0.8178,0.1911,0.5863,1,4.27
+Hybrid,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,0.4737,0.7765,0.8669,0.0493,0.5444,1,3.23
+Hybrid,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.5375,0.6351,0.7803,0.1928,0.5525,1,4.34
+Hybrid,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.6585,0.3513,0.6367,0.4558,0.6147,1,2.89
+Hybrid,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.9166,0.8413,0.6575,0.417,0.6351,1,2.83
+Hybrid,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.9156,0.8047,0.8619,0.1673,0.6902,1,4.28
+Hybrid,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.8051,0.1766,0.8901,0.0942,0.5794,1,4.49
+Hybrid,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.5528,0.7569,0.5808,0.4925,0.557,1,2.72
+Hybrid,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.4984,0.5462,0.5634,0.0686,0.5472,1,3.35
+Hybrid,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.5929,0.7072,0.5261,0.2097,0.6368,1,2.8
+Hybrid,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.6577,0.95,0.7936,0.4013,0.67,1,2.88
+Hybrid,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,0.9125,0.7032,0.8269,0.4167,0.6488,1,4.42
+Hybrid,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.5807,0.4442,0.5426,0.0,0.542,1,3.4
+Hybrid,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.5251,0.1291,0.9286,0.1312,0.5086,1,2.51
+Hybrid,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.6348,0.2946,0.6147,0.1132,0.4419,1,4.27
+Hybrid,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.8896,0.6664,0.5552,0.3521,0.7332,1,3.75
+Hybrid,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.623,0.7349,0.8142,0.5098,0.6445,1,3.28
+Hybrid+Rerank,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.6817,0.6261,0.8767,0.5024,0.6319,1,7.02
+Hybrid+Rerank,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,1.0,0.7979,0.8366,0.5215,0.7184,1,7.11
+Hybrid+Rerank,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.4597,0.6526,0.7061,0.4568,0.5019,1,4.63
+Hybrid+Rerank,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.7623,0.7151,0.7164,0.1323,0.7427,1,5.6
+Hybrid+Rerank,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.7254,0.528,0.8236,0.1519,0.6109,1,4.46
+Hybrid+Rerank,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,1.0,1.0,0.9612,0.7736,0.803,1,6.07
+Hybrid+Rerank,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,0.775,0.668,0.845,0.1769,0.555,1,5.64
+Hybrid+Rerank,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.9486,1.0,0.9994,0.4558,0.6827,1,7.64
+Hybrid+Rerank,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.6969,0.524,0.6818,0.2481,0.5508,1,4.57
+Hybrid+Rerank,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.589,0.7,0.7271,0.1702,0.6578,1,5.32
+Hybrid+Rerank,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.9807,0.9329,0.9313,0.2786,0.5518,1,4.64
+Hybrid+Rerank,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,1.0,0.7494,1.0,0.2213,0.708,1,6.24
+Hybrid+Rerank,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.8485,0.9125,0.8395,0.2718,0.6508,1,6.48
+Hybrid+Rerank,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.8459,0.8097,0.8659,0.367,0.6049,1,6.4
+Hybrid+Rerank,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.524,0.7091,0.6125,0.221,0.5627,1,5.05
+Hybrid+Rerank,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.7001,0.8311,0.7965,0.5412,0.6066,1,6.45
+Hybrid+Rerank,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.8538,1.0,0.7302,0.4421,0.6029,1,7.31
+Hybrid+Rerank,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,0.9927,0.8601,1.0,0.4035,0.8019,1,5.04
+Hybrid+Rerank,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,1.0,0.9207,0.6785,0.4215,0.6469,1,4.69
+Hybrid+Rerank,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.7404,0.9544,1.0,0.267,0.6811,1,5.19
+Hybrid+Rerank,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.7852,0.4121,0.5715,0.1939,0.5057,1,6.07
+Hybrid+Rerank,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.8087,0.5076,0.8591,0.4861,0.5274,1,5.4
+Hybrid+Rerank,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.8646,0.8247,1.0,0.3221,0.7506,1,4.42
+Hybrid+Rerank,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,1.0,0.8872,1.0,0.285,0.7542,1,4.55
+Hybrid+Rerank,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.6508,0.937,0.8163,0.5475,0.5741,1,7.06
+Hybrid+Rerank,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,0.7075,0.6962,0.9823,0.3715,0.7862,1,4.52
+Hybrid+Rerank,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.6444,0.4878,0.6788,0.3506,0.5525,1,6.75
+Hybrid+Rerank,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.6924,0.5373,0.6424,0.4267,0.5808,1,6.36
+Hybrid+Rerank,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.5766,0.8434,0.8571,0.3779,0.6469,1,7.27
+Hybrid+Rerank,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,1.0,0.8641,1.0,0.382,0.7601,1,7.04
+Hybrid+Rerank,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.8487,0.6611,0.8234,0.178,0.6258,1,6.7
+Hybrid+Rerank,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.8352,0.7368,0.9696,0.433,0.6455,1,6.38
+Hybrid+Rerank,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.6928,0.4715,0.6956,0.0,0.5214,1,4.73
+Hybrid+Rerank,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.7125,0.6883,0.8317,0.4316,0.6428,1,5.32
+Hybrid+Rerank,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.8775,0.3517,0.8833,0.4069,0.5994,1,4.98
+Hybrid+Rerank,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,1.0,1.0,1.0,0.6563,0.753,1,7.74
+Hybrid+Rerank,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.7736,0.6536,0.8059,0.2984,0.6046,1,4.56
+Hybrid+Rerank,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.7877,0.7605,0.8771,0.3565,0.6732,1,5.3
+Hybrid+Rerank,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.7353,0.6233,0.8715,0.1195,0.5051,1,7.39
+Hybrid+Rerank,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.6262,0.6833,0.709,0.0656,0.6795,1,6.97
+Hybrid+Rerank,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.9085,0.7291,0.8366,0.3054,0.6461,1,5.14
+Hybrid+Rerank,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,0.9515,0.9289,0.8822,0.4511,0.7431,1,4.6
+Hybrid+Rerank,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.878,0.4693,1.0,0.1796,0.6446,1,5.37
+Hybrid+Rerank,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,0.8123,0.9639,0.7238,0.1095,0.7353,1,7.41
+Hybrid+Rerank,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.5757,0.7082,0.5305,0.0212,0.4932,1,7.23
+Hybrid+Rerank,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,1.0,0.633,0.9002,0.4191,0.7251,1,4.44
+Hybrid+Rerank,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,1.0,0.5757,0.8603,0.3867,0.7503,1,6.65
+Hybrid+Rerank,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.9722,0.9016,0.8953,0.2749,0.8161,1,6.58
+Hybrid+Rerank,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.7371,0.6684,0.8034,0.3955,0.6045,1,6.95
+Hybrid+Rerank,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,0.9455,0.6381,0.7188,0.5999,0.6276,1,6.41
+Hybrid+Rerank,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.571,0.6421,0.7651,0.1773,0.5199,1,7.69
+Hybrid+Rerank,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.7086,0.8355,0.8317,0.3911,0.7387,1,7.12
+Hybrid+Rerank,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.8799,0.6203,0.8899,0.4492,0.6344,1,5.01
+Hybrid+Rerank,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.8947,0.6176,1.0,0.2484,0.7308,1,7.39
+Hybrid+Rerank,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.7804,0.551,0.9383,0.4023,0.663,1,7.25
+Hybrid+Rerank,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.8129,0.7753,0.8361,0.6056,0.6765,1,7.0
+Hybrid+Rerank,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.6834,0.4203,0.6929,0.3264,0.5194,1,7.57
+Hybrid+Rerank,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.8276,0.627,0.7731,0.4495,0.7213,1,6.84
+Hybrid+Rerank,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.8244,1.0,0.9615,0.0665,0.6517,1,6.23
+Hybrid+Rerank,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,1.0,0.9275,1.0,0.5304,0.7357,1,4.23
+Hybrid+Rerank,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.43,0.6518,0.5289,0.4542,0.4922,1,4.93
+Hybrid+Rerank,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.76,0.5945,0.502,0.3507,0.5894,1,6.2
+Hybrid+Rerank,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.5001,0.351,0.511,0.1915,0.4684,1,7.36
+Hybrid+Rerank,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.9289,0.6352,0.8135,0.511,0.5619,1,6.7
+Hybrid+Rerank,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.5113,0.832,0.7197,0.3618,0.5969,1,5.93
+Hybrid+Iter,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.563,0.7136,0.9179,0.6649,0.7623,2,6.62
+Hybrid+Iter,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,0.8595,0.8091,0.6388,0.234,0.6178,1,2.52
+Hybrid+Iter,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.5794,0.6622,0.539,0.5114,0.4145,2,5.38
+Hybrid+Iter,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.5908,0.6601,0.664,0.5878,0.6622,3,10.58
+Hybrid+Iter,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.5012,0.959,0.8799,0.4307,0.6021,3,7.81
+Hybrid+Iter,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,0.679,1.0,1.0,0.3249,0.6323,2,4.01
+Hybrid+Iter,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,0.673,0.4323,0.7472,0.327,0.5854,3,10.12
+Hybrid+Iter,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.4222,0.771,0.6414,0.1423,0.4169,1,2.1
+Hybrid+Iter,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.4665,0.7798,0.7592,0.1908,0.4522,2,4.37
+Hybrid+Iter,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.6941,0.7823,0.8528,0.3363,0.6037,2,4.75
+Hybrid+Iter,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.6257,0.7449,0.8369,0.2177,0.7225,1,2.78
+Hybrid+Iter,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,0.7864,0.481,0.9871,0.5308,0.691,1,3.08
+Hybrid+Iter,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.6615,0.7613,0.4832,0.2647,0.6736,1,2.91
+Hybrid+Iter,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.4753,0.7642,0.711,0.0749,0.6995,1,2.21
+Hybrid+Iter,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.3562,0.4079,0.5547,0.4405,0.4233,3,9.52
+Hybrid+Iter,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.6306,0.6974,0.6296,0.2141,0.624,2,5.55
+Hybrid+Iter,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.7291,0.8222,0.3782,0.1927,0.6613,1,2.82
+Hybrid+Iter,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,1.0,0.8037,1.0,0.3253,0.6548,1,2.51
+Hybrid+Iter,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,0.6701,0.921,0.7472,0.3099,0.5976,3,9.77
+Hybrid+Iter,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.4271,0.8242,0.7051,0.302,0.8415,1,3.06
+Hybrid+Iter,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.4043,0.69,0.5425,0.0279,0.5587,2,6.05
+Hybrid+Iter,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.5168,0.6076,0.8603,0.3492,0.6777,1,3.13
+Hybrid+Iter,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.5606,0.8403,0.6621,0.2768,0.5511,2,5.99
+Hybrid+Iter,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,0.8947,0.8335,1.0,0.408,0.7424,3,9.25
+Hybrid+Iter,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.4853,0.7487,0.6758,0.4944,0.7011,3,10.37
+Hybrid+Iter,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,1.0,0.725,0.6666,0.4314,0.5973,3,8.61
+Hybrid+Iter,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.3138,0.6887,0.711,0.2332,0.3459,2,6.7
+Hybrid+Iter,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.5262,0.5281,0.6103,0.4744,0.6563,1,2.36
+Hybrid+Iter,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.5999,0.5592,0.9352,0.293,0.7032,2,6.75
+Hybrid+Iter,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,1.0,0.8882,0.8599,0.2838,0.7334,2,5.01
+Hybrid+Iter,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.5785,0.716,0.7417,0.3015,0.6591,2,6.08
+Hybrid+Iter,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.5969,0.7152,0.9875,0.1836,0.5706,1,2.47
+Hybrid+Iter,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.551,0.5505,0.5757,0.35,0.5388,2,6.97
+Hybrid+Iter,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.7941,0.7689,0.947,0.3391,0.5498,2,6.82
+Hybrid+Iter,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.3221,0.814,0.6341,0.3081,0.6412,2,6.8
+Hybrid+Iter,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,0.8584,0.9039,0.827,0.5369,0.7538,1,3.58
+Hybrid+Iter,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.5051,0.8434,0.627,0.4674,0.6437,1,2.37
+Hybrid+Iter,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.9578,0.6942,0.6736,0.5023,0.5049,2,4.93
+Hybrid+Iter,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.619,0.7709,0.512,0.2495,0.4993,1,3.36
+Hybrid+Iter,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.8023,0.5385,0.7144,0.5181,0.6531,3,8.76
+Hybrid+Iter,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.2393,0.7896,0.6174,0.0213,0.6538,3,8.11
+Hybrid+Iter,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,1.0,1.0,1.0,0.6933,0.7626,2,5.64
+Hybrid+Iter,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.6126,0.5656,1.0,0.3176,0.6266,3,8.43
+Hybrid+Iter,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,0.757,0.6073,0.7432,0.2379,0.5256,2,4.07
+Hybrid+Iter,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.4038,0.4249,0.3297,0.246,0.3891,2,5.66
+Hybrid+Iter,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,0.7396,0.6275,0.5757,0.4075,0.7118,2,4.91
+Hybrid+Iter,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,0.636,0.7887,0.7388,0.2267,0.5957,2,6.86
+Hybrid+Iter,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.7045,1.0,0.8548,0.2916,0.6047,2,5.3
+Hybrid+Iter,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.6927,0.7603,0.4806,0.4964,0.5842,2,4.12
+Hybrid+Iter,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,0.6939,0.9292,0.8416,0.3092,0.5556,2,5.16
+Hybrid+Iter,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.4379,0.3824,0.5082,0.2745,0.4787,3,9.25
+Hybrid+Iter,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.5196,0.515,0.8785,0.3226,0.6193,2,6.99
+Hybrid+Iter,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.8097,0.7333,0.6233,0.4199,0.5379,1,2.67
+Hybrid+Iter,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.8456,0.8115,0.5998,0.3286,0.7172,1,2.9
+Hybrid+Iter,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.8485,0.5623,0.8377,0.4336,0.5728,2,4.85
+Hybrid+Iter,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.9479,0.8411,0.6221,0.5969,0.6005,3,10.2
+Hybrid+Iter,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.4498,0.6414,0.6377,0.0,0.5857,3,9.35
+Hybrid+Iter,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.3617,0.5149,0.6235,0.1478,0.603,3,7.62
+Hybrid+Iter,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.8654,0.893,0.6303,0.3325,0.5002,2,5.96
+Hybrid+Iter,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,0.7029,0.6523,0.7804,0.4013,0.7303,2,4.39
+Hybrid+Iter,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.3669,0.5075,0.5821,0.2575,0.4639,1,2.61
+Hybrid+Iter,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.4237,0.4723,0.7294,0.3513,0.4737,1,3.57
+Hybrid+Iter,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.5495,0.4615,0.6698,0.3306,0.4869,2,5.06
+Hybrid+Iter,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.6408,0.4751,0.666,0.6271,0.7742,3,10.08
+Hybrid+Iter,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.27,0.5589,0.5217,0.2186,0.6062,2,7.17
+Full-System,Q001,What is the root cause of the failure affecting UE7?,root_cause,medium,S01,0.7413,0.5016,0.9105,0.1933,0.6724,2,10.33
+Full-System,Q002,What error occurred in the RRC module and what were its downstream effects?,failure_tracing,medium,S01,0.5144,0.725,0.9616,0.6419,0.5842,2,6.95
+Full-System,Q003,Trace the complete chain of events from enodeb_rrc.log to core_nw_amf.log that led to the rrc reconfiguration failure cascade.,multi_hop,hard,S01,0.648,0.909,0.4728,0.3175,0.5545,2,11.73
+Full-System,Q004,What events occurred during the rrc reconfiguration failure cascade incident and in what order?,temporal,medium,S01,0.805,0.6867,0.8393,0.3107,0.6953,3,11.37
+Full-System,Q005,What was the impact of the rrc reconfiguration failure cascade on user equipment and network services?,impact_analysis,medium,S01,0.7636,0.8035,0.8359,0.5337,0.6549,2,8.88
+Full-System,Q006,What does error code RRC_RECONFIG_FAIL_004 indicate and what caused it?,error_code,easy,S01,0.889,0.8213,0.9503,0.6364,0.6286,2,11.71
+Full-System,Q007,What is the root cause of the failure affecting UE1?,root_cause,medium,S02,1.0,0.7441,0.862,0.4594,0.6967,2,12.23
+Full-System,Q008,What error occurred in the SCTP module and what were its downstream effects?,failure_tracing,medium,S02,0.7943,0.7419,0.8255,0.5373,0.6936,2,12.06
+Full-System,Q009,Trace the complete chain of events from transport_sctp.log to ran_cell.log that led to the sctp transport link failure.,multi_hop,hard,S02,0.2356,0.5734,0.5898,0.4185,0.5833,2,7.49
+Full-System,Q010,What events occurred during the sctp transport link failure incident and in what order?,temporal,medium,S02,0.6514,0.5622,0.7452,0.4841,0.7152,2,6.8
+Full-System,Q011,What was the impact of the sctp transport link failure on user equipment and network services?,impact_analysis,medium,S02,0.8696,0.8474,0.8932,0.2699,0.6839,3,16.72
+Full-System,Q012,What does error code SCTP_HEARTBEAT_TIMEOUT_084 indicate and what caused it?,error_code,easy,S02,1.0,0.9929,1.0,0.5984,0.7551,1,4.53
+Full-System,Q013,What is the root cause of the failure affecting UE11?,root_cause,medium,S03,0.6922,0.6659,0.8168,0.2325,0.6395,3,18.27
+Full-System,Q014,What error occurred in the HANDOVER module and what were its downstream effects?,failure_tracing,medium,S03,0.5908,0.7879,0.8461,0.2206,0.6976,1,3.57
+Full-System,Q015,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the inter-gnb handover failure.,multi_hop,hard,S03,0.7009,0.3732,0.5505,0.1642,0.47,3,18.11
+Full-System,Q016,What events occurred during the inter-gnb handover failure incident and in what order?,temporal,medium,S03,0.8675,0.7116,0.7832,0.06,0.6961,3,15.29
+Full-System,Q017,What was the impact of the inter-gnb handover failure on user equipment and network services?,impact_analysis,medium,S03,0.6593,0.9274,0.7016,0.0,0.669,2,10.32
+Full-System,Q018,What does error code SCHED_RESOURCE_EXHAUST_137 indicate and what caused it?,error_code,easy,S03,1.0,0.8417,1.0,0.2837,0.7853,2,9.72
+Full-System,Q019,What is the root cause of the failure affecting UE22?,root_cause,medium,S04,0.8587,0.8004,0.7786,0.3639,0.5519,2,7.49
+Full-System,Q020,What error occurred in the PCF module and what were its downstream effects?,failure_tracing,medium,S04,0.7551,0.7802,0.7596,0.5322,0.658,1,4.16
+Full-System,Q021,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the pdu session establishment rejection.,multi_hop,hard,S04,0.5873,0.5345,0.6469,0.4006,0.4744,2,7.31
+Full-System,Q022,What events occurred during the pdu session establishment rejection incident and in what order?,temporal,medium,S04,0.6065,0.6328,0.761,0.4823,0.6738,2,11.96
+Full-System,Q023,What was the impact of the pdu session establishment rejection on user equipment and network services?,impact_analysis,medium,S04,0.8312,0.8052,0.8282,0.4065,0.623,2,8.95
+Full-System,Q024,What does error code SMF_QOS_FLOW_ERR_104 indicate and what caused it?,error_code,easy,S04,1.0,1.0,1.0,0.624,0.762,2,7.33
+Full-System,Q025,What is the root cause of the failure affecting UE5?,root_cause,medium,S05,0.8217,0.8286,0.9584,0.3434,0.631,3,14.4
+Full-System,Q026,What error occurred in the RLC module and what were its downstream effects?,failure_tracing,medium,S05,0.6447,0.4717,0.7882,0.1627,0.6275,3,13.68
+Full-System,Q027,Trace the complete chain of events from ran_cell.log to enodeb_rrc.log that led to the rlc max retransmission causing drb failure.,multi_hop,hard,S05,0.5707,0.617,0.6621,0.368,0.4581,2,11.79
+Full-System,Q028,What events occurred during the rlc max retransmission causing drb failure incident and in what order?,temporal,medium,S05,0.8485,0.6009,0.6479,0.493,0.6806,3,12.81
+Full-System,Q029,What was the impact of the rlc max retransmission causing drb failure on user equipment and network services?,impact_analysis,medium,S05,0.6998,0.6061,1.0,0.2164,0.6963,3,12.56
+Full-System,Q030,What does error code MAC_HARQ_NACK_MAX_067 indicate and what caused it?,error_code,easy,S05,0.9324,0.8831,1.0,0.2739,0.8011,1,4.45
+Full-System,Q031,What is the root cause of the failure affecting UE3?,root_cause,medium,S06,0.7364,0.7222,0.7276,0.0,0.6465,2,10.15
+Full-System,Q032,What error occurred in the GTP-U module and what were its downstream effects?,failure_tracing,medium,S06,0.8157,0.7279,0.8484,0.4487,0.5872,3,16.76
+Full-System,Q033,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the gtp-u path failure on backhaul.,multi_hop,hard,S06,0.7221,0.631,0.6327,0.388,0.5619,1,4.12
+Full-System,Q034,What events occurred during the gtp-u path failure on backhaul incident and in what order?,temporal,medium,S06,0.7802,0.9312,0.6809,0.1356,0.6679,3,10.28
+Full-System,Q035,What was the impact of the gtp-u path failure on backhaul on user equipment and network services?,impact_analysis,medium,S06,0.8141,0.7778,0.8646,0.3299,0.7474,2,8.46
+Full-System,Q036,What does error code GTPU_PATH_FAIL_037 indicate and what caused it?,error_code,easy,S06,0.9853,0.6966,0.9943,0.6883,0.758,3,10.73
+Full-System,Q037,What is the root cause of the failure affecting UE31?,root_cause,medium,S07,0.8257,0.5922,0.7673,0.3074,0.6389,2,11.22
+Full-System,Q038,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S07,0.6846,0.7921,0.8983,0.5295,0.7528,2,8.71
+Full-System,Q039,Trace the complete chain of events from core_nw_amf.log to core_nw_amf.log that led to the 5g-aka authentication failure.,multi_hop,hard,S07,0.4666,0.5463,0.6796,0.4159,0.5218,3,10.62
+Full-System,Q040,What events occurred during the 5g-aka authentication failure incident and in what order?,temporal,medium,S07,0.6678,0.9993,0.6422,0.381,0.7794,1,4.15
+Full-System,Q041,What was the impact of the 5g-aka authentication failure on user equipment and network services?,impact_analysis,medium,S07,0.8088,0.7333,0.9831,0.0232,0.75,1,3.84
+Full-System,Q042,What does error code AMF_AUTH_FAIL_094 indicate and what caused it?,error_code,easy,S07,0.8268,0.8701,0.9677,0.5104,0.6608,2,10.14
+Full-System,Q043,What is the root cause of the failure affecting UE9?,root_cause,medium,S08,0.8535,0.7749,0.7625,0.433,0.6591,3,11.48
+Full-System,Q044,What error occurred in the MAC module and what were its downstream effects?,failure_tracing,medium,S08,1.0,0.7369,0.9216,0.18,0.6006,2,11.16
+Full-System,Q045,Trace the complete chain of events from ran_cell.log to ran_cell.log that led to the dl scheduler starvation under load.,multi_hop,hard,S08,0.6451,0.5364,0.6305,0.0856,0.5627,2,11.6
+Full-System,Q046,What events occurred during the dl scheduler starvation under load incident and in what order?,temporal,medium,S08,0.7116,0.7695,0.7651,0.3459,0.784,1,4.19
+Full-System,Q047,What was the impact of the dl scheduler starvation under load on user equipment and network services?,impact_analysis,medium,S08,0.7784,0.8498,0.82,0.2614,0.7373,2,11.06
+Full-System,Q048,What does error code MAC_BSR_TIMEOUT_064 indicate and what caused it?,error_code,easy,S08,0.7737,1.0,0.9409,0.5373,0.6385,2,8.1
+Full-System,Q049,What is the root cause of the failure affecting UE2?,root_cause,medium,S09,0.9051,0.7528,0.7318,0.3089,0.6992,3,15.11
+Full-System,Q050,What error occurred in the IPSec module and what were its downstream effects?,failure_tracing,medium,S09,1.0,0.5639,1.0,0.3952,0.6041,3,18.26
+Full-System,Q051,Trace the complete chain of events from transport_sctp.log to cu_up_gtpu.log that led to the ipsec tunnel failure on midhaul.,multi_hop,hard,S09,0.4288,0.552,0.7274,0.2412,0.6171,2,7.9
+Full-System,Q052,What events occurred during the ipsec tunnel failure on midhaul incident and in what order?,temporal,medium,S09,0.6177,0.7818,0.9041,0.2838,0.5017,3,17.3
+Full-System,Q053,What was the impact of the ipsec tunnel failure on midhaul on user equipment and network services?,impact_analysis,medium,S09,0.8319,0.9117,0.7265,0.4705,0.7296,1,5.88
+Full-System,Q054,What does error code F1AP_MSG_DECODE_ERR_018 indicate and what caused it?,error_code,easy,S09,0.7843,0.9439,0.9599,0.4038,0.7776,1,4.56
+Full-System,Q055,What is the root cause of the failure affecting UE40?,root_cause,medium,S10,0.7395,0.6659,0.8356,0.1909,0.5929,2,6.73
+Full-System,Q056,What error occurred in the AMF module and what were its downstream effects?,failure_tracing,medium,S10,0.8995,0.6163,0.916,0.4424,0.5545,2,10.82
+Full-System,Q057,Trace the complete chain of events from core_nw_amf.log to cu_cp_f1ap.log that led to the amf overload causing registration delays.,multi_hop,hard,S10,0.5071,0.5173,0.6791,0.3878,0.5113,3,18.59
+Full-System,Q058,What events occurred during the amf overload causing registration delays incident and in what order?,temporal,medium,S10,0.6963,0.9152,0.9936,0.5056,0.6631,3,11.53
+Full-System,Q059,What was the impact of the amf overload causing registration delays on user equipment and network services?,impact_analysis,medium,S10,0.711,0.8087,0.9862,0.4562,0.5678,2,10.84
+Full-System,Q060,What does error code AMF_REG_REJECT_091 indicate and what caused it?,error_code,easy,S10,0.9516,0.9352,1.0,0.9087,0.7931,3,16.1
+Full-System,Q061,Which failures affected multiple UEs simultaneously and what was the common cause?,cross_scenario,hard,"S02,S06,S08,S10",0.5364,0.5204,0.7981,0.3049,0.5563,3,17.53
+Full-System,Q062,Compare the transport-layer failures: how does SCTP association failure differ from GTP-U path failure in terms of impact?,cross_scenario,hard,"S02,S06",0.6591,0.483,0.551,0.1099,0.5528,3,14.94
+Full-System,Q063,What are all the scenarios where packet loss or data loss occurred and what were the root causes?,cross_scenario,hard,"S01,S03,S06",0.6519,0.5601,0.6798,0.1106,0.5032,3,16.43
+Full-System,Q064,"Did any UE recover successfully after a failure, and if so, how long did the service interruption last?",cross_scenario,medium,"S03,S06,S07,S09",0.6827,0.702,0.6166,0.2988,0.7114,2,12.29
+Full-System,Q065,"Was the UE7 failure related to the SCTP transport failure, or were they independent events?",contrastive,medium,"S01,S02",0.767,0.7019,0.6927,0.4681,0.6833,1,5.66
